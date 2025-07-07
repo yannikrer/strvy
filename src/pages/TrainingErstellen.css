@@ -1,0 +1,122 @@
+.training-erstellen-page {
+  --background: #121212;
+  background-color: var(--background);
+  color: white;
+  padding: 0;
+}
+
+.content-offset {
+  padding: 20px;
+  margin-top: 60px;
+}
+
+.title {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.input,
+.color-picker {
+  width: 100%;
+  background-color: #1e1e1e;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+.color-picker {
+  height: 40px;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 20px 0 10px;
+  color: white;
+}
+
+.uebung-liste {
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  padding: 10px 12px;
+  max-height: 240px;
+  overflow-y: auto;
+  color: white;
+}
+
+.uebung-eintrag {
+  padding: 10px 0;
+  border-bottom: 1px solid #2c2c2c;
+  cursor: pointer;
+  color: white;
+}
+
+.uebung-eintrag:last-child {
+  border-bottom: none;
+}
+
+.uebung-eintrag strong {
+  font-size: 15px;
+  color: white;
+}
+
+.gewicht {
+  font-size: 13px;
+  color: #aaa;
+  margin-top: 2px;
+}
+
+.remove-text {
+  color: #ff4d4d;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.uebung-eintrag.selected {
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  padding: 10px;
+  transition: background-color 0.2s;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.button-row ion-button {
+  flex: 1;
+  margin: 0 8px;
+  --background: #2c2c2c;
+  --color: white;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+/* Dropdown-Optionen sollen NICHT weiß sein */
+ion-select,
+ion-select-option {
+  color: #aaa !important;
+}
+
+.training-item {
+  padding: 8px;
+  margin: 10px 0;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+  transition: background 0.2s;
+}
+
+.training-item:hover {
+  background-color: #2e2e2e;
+}
+

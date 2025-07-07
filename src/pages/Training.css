@@ -1,0 +1,72 @@
+.training-page {
+  --background: #121212;
+  background-color: var(--background);
+  color: white;
+  padding: 1rem;
+}
+
+.content-offset {
+  padding-top: 60px;
+}
+
+.training-card {
+  background-color: #1e1e1e;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+.training-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.training-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+}
+
+.training-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: -40%;  /* statt margin-right */
+  flex-shrink: 0;
+}
+
+.training-actions .icon-btn {
+  font-size: 1.2rem;
+  padding: 6px;
+  cursor: pointer;
+  color: white;
+}
+
+.training-info {
+  font-size: 0.95rem;
+  color: #dcdcdc;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+
+.training-date {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 0px;
+}
+
+.no-data {
+  text-align: center;
+  margin-top: 2rem;
+  color: #777;
+}

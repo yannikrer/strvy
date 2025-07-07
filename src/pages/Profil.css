@@ -1,0 +1,58 @@
+.profil-page {
+  --background: #000;
+  color: white;
+}
+
+.content-offset {
+  padding-top: 70px;
+  padding-inline: 16px;
+}
+
+.profil-title {
+  text-align: center;
+  margin-bottom: 24px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.input-item {
+  background-color: transparent;
+  --background: transparent;
+  border: none;
+  margin-bottom: 20px;
+}
+
+.input-with-icon {
+  display: flex;
+  align-items: center;
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.profil-input {
+  color: white;
+  flex: 1;
+  background: transparent;
+}
+
+.edit-icon {
+  font-size: 20px;
+  color: #888;
+  margin-left: 8px;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.logout-btn,
+.save-btn {
+  flex: 1;
+  border-radius: 12px;
+  --background: #1a1a1a;
+  color: white;
+}

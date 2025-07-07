@@ -1,0 +1,56 @@
+.home-page {
+  --background: #121212;
+  color: white;
+  padding: 0;
+}
+
+.content-offset {
+  padding: 20px;
+}
+
+.wochenplan-card {
+  background: #1e1e1e;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 1rem;
+  color: white;
+}
+
+.arrow-icon {
+  font-size: 1.3rem;
+  color: white;
+  cursor: pointer;
+}
+
+.tag-bar-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.tag-bar {
+  width: 12%;
+  height: 120px;
+  border-radius: 6px;
+  background: #333;
+}
+
+.tag-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: #bbb;
+}

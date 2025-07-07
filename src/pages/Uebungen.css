@@ -1,0 +1,71 @@
+.uebungen-page {
+  --background: #121212;
+  color: #fff;
+  padding: 16px;
+}
+
+.content-offset {
+  margin-top: 100px;
+  padding: 0 16px;
+}
+
+.no-data {
+  text-align: center;
+  color: #aaa;
+  margin-top: 2rem;
+}
+
+.uebung-card {
+  background: #1e1e1e;
+  padding: 16px;
+  border-radius: 14px;
+  margin-bottom: 16px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.uebung-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.uebung-title-row strong {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+}
+
+.uebung-actions {
+  display: flex;
+  gap: 12px;
+  cursor: pointer;
+  color: white;
+}
+
+.uebung-actions ion-icon {
+  font-size: 1.3rem;
+}
+
+.uebung-info-wrapper p {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin: 4px 0;
+}
+
+
+.uebung-info-wrapper {
+  display: block; /* Nicht mehr flex */
+}
+
+.uebung-text {
+  margin-bottom: 12px; /* Abstand nach unten vor Bild */
+}
+
+.uebung-img {
+  width: 100%;
+  max-height: auto;
+  border-radius: 10px;
+  object-fit: contain;
+}
