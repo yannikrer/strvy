@@ -1,11 +1,17 @@
-const STORAGE_KEY = 'kalorienDaten';
-
 export interface KalorienEintrag {
   kw: number;
-  tage: number[][]; // z.B. [[120, 150], [], [400], [], [], [], []]
+  tage: KalorienEintragDetails[][];
 }
 
-const initialTage = (): number[][] => Array.from({ length: 7 }, () => []);
+export interface KalorienEintragDetails {
+  kcal: number;
+  titel: string;
+  datum: string;
+}
+
+const STORAGE_KEY = 'kalorienDaten';
+
+const initialTage = (): KalorienEintragDetails[][] => Array.from({ length: 7 }, () => []);
 
 export const getAktuelleKW = (): number => {
   const now = new Date();
@@ -28,53 +34,36 @@ const saveAlleKalorienEintraege = (daten: KalorienEintrag[]) => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(daten));
 };
 
-export const getKalorienWoche = (kw: number): number[] => {
+export const getKalorienWoche = (kw: number): KalorienEintragDetails[][] => {
   const daten = getAlleKalorienEintraege();
   let eintrag = daten.find(e => e.kw === kw);
-
   if (!eintrag) {
     eintrag = { kw, tage: initialTage() };
     daten.push(eintrag);
     saveAlleKalorienEintraege(daten);
   }
-
-  // Rückwärtskompatibilität: Wenn tage = number[]
-  if (
-    Array.isArray(eintrag.tage) &&
-    eintrag.tage.length > 0 &&
-    eintrag.tage.every(t => typeof t === 'number')
-  ) {
-    const alteTage = eintrag.tage as unknown as number[];
-    eintrag.tage = alteTage.map(kcal => [kcal]);
-    saveAlleKalorienEintraege(daten);
-  }
-
-  // Sicherstellen, dass es 7 Tage sind
   while (eintrag.tage.length < 7) {
     eintrag.tage.push([]);
   }
-
-  return eintrag.tage.map(tagEintraege =>
-    Array.isArray(tagEintraege)
-      ? tagEintraege.reduce((sum, kcal) => sum + kcal, 0)
-      : 0
-  );
+  return eintrag.tage;
 };
 
-export const addKalorienEintrag = (kw: number, tagIndex: number, kcal: number) => {
+export const addKalorienEintrag = (
+  kw: number,
+  tagIndex: number,
+  kcal: number,
+  titel: string
+) => {
   const daten = getAlleKalorienEintraege();
   let eintrag = daten.find(e => e.kw === kw);
-
   if (!eintrag) {
     eintrag = { kw, tage: initialTage() };
     daten.push(eintrag);
   }
-
-  // Sicherstellen, dass es ein Array ist
-  if (!Array.isArray(eintrag.tage[tagIndex])) {
-    eintrag.tage[tagIndex] = [];
-  }
-
-  eintrag.tage[tagIndex].push(kcal);
+  eintrag.tage[tagIndex].push({
+    kcal,
+    titel,
+    datum: new Date().toISOString()
+  });
   saveAlleKalorienEintraege(daten);
 };

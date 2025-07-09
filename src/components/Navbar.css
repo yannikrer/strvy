@@ -1,51 +1,73 @@
-/* Navbar Container fix am unteren Rand */
-.navbar-wrapper {
+/* Container bleibt fixiert */
+.navbar-floating-container {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-  background: transparent;
-  pointer-events: none; /* damit der Wrapper nicht blockiert */
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+  pointer-events: auto;
 }
 
-/* Navigation bar selbst */
+/* Basis-Styling */
 .navbar {
+  background-color: #1e1e1e;
+  height: 56px;
+  border-radius: 999px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  transition: width 0.3s ease, padding 0.3s ease;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  padding: 0;
+  width: 56px;
+}
+
+/* Wenn offen, wird es zur vollen Navbar */
+.navbar.expanded {
+  width: 390px;
+  padding: 0 20px;
   justify-content: space-between;
-  gap: 16px;
-  background-color: #1e1e1e;
-  padding: 12px 20px;
-  border-radius: 20px 20px 0 0;
-  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.6);
-  width: 100%;
-  max-width: 420px;
-  pointer-events: auto; /* Interaktionen zulassen */
 }
 
-/* Links & Icons */
-.nav-link {
-  text-decoration: none;
-}
-
-.nav-icon {
-  font-size: 22px;
-  color: gray;
-  transition: color 0.3s ease;
-}
-
-.nav-link.active .nav-icon {
+/* Toggle-Button (≡ oder ×) */
+.nav-toggle-btn {
+  background: none;
+  border: none;
   color: white;
+  font-size: 26px;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.nav-toggle-btn:hover {
+  color: #f66;
+}
+
+/* Hamburger-Icon */
+.hamburger-icon {
+  font-size: 26px;
 }
 
 /* Logo */
 .nav-logo img {
   height: 28px;
   width: auto;
-  display: block;
-  margin: 0 auto;
   filter: brightness(1.2);
+}
+
+/* Nav icons */
+.nav-link {
+  text-decoration: none;
+}
+.nav-icon {
+  font-size: 22px;
+  color: gray;
+  transition: color 0.3s ease;
+}
+.nav-link.active .nav-icon {
+  color: white;
 }

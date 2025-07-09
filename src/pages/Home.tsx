@@ -3,6 +3,7 @@ import {
   IonContent,
   IonText,
   IonIcon,
+  useIonViewWillEnter,
 } from '@ionic/react';
 import './Home.css';
 import Navbar from '../components/Navbar';
@@ -11,20 +12,16 @@ import { useHistory } from 'react-router-dom';
 import { getAktuelleKW, getWochenplan } from '../data/wochenplan';
 import { getTrainings } from '../data/trainings';
 import { getKalorienWoche } from '../data/kalorien';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const Home: React.FC = () => {
   const history = useHistory();
-  const kw = getAktuelleKW();
+  const [kw, setKw] = useState<number>(getAktuelleKW());
+  const [kalorienWoche, setKalorienWoche] = useState<number[]>([]);
   const plan = getWochenplan(kw);
   const trainings = getTrainings();
 
-  const [kalorienWoche, setKalorienWoche] = useState<number[]>([]);
-
-  useEffect(() => {
-    const werte = getKalorienWoche(kw);
-    setKalorienWoche(werte);
-  }, [kw]);
+  const wochentage = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
 
   const getTrainingColor = (id?: string) =>
     trainings.find(t => t.id === id)?.farbe || '#333';
@@ -36,7 +33,13 @@ const Home: React.FC = () => {
     }
   };
 
-  const wochentage = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
+  // ⬇ Daten immer neu laden, wenn die Seite aufgerufen wird
+  useIonViewWillEnter(() => {
+    const aktuelleKW = getAktuelleKW();
+    setKw(aktuelleKW);
+    const werte = getKalorienWoche(aktuelleKW);
+    setKalorienWoche(werte);
+  });
 
   return (
     <IonPage>
@@ -83,34 +86,27 @@ const Home: React.FC = () => {
                 onClick={() => history.push('/kalorien')}
               />
             </div>
+<div className="kalorien-chart">
+  {kalorienWoche.map((kcal, index) => {
+    const max = Math.max(...kalorienWoche, 1);
+    const prozent = (kcal / max) * 100;
+    const sichtbareHoehe = Math.max(prozent, kcal > 0 ? 8 : 3); // fallback height
+    return (
+      <div key={index} className="kalorien-column">
+        <div
+          className="kalorien-bar"
+          style={{
+            height: `${sichtbareHoehe}%`,
+            backgroundColor: kcal > 0 ? '#4caf50' : '#333',
+          }}
+          title={`${kcal} kcal`}
+        />
+        <div className="kalorien-label">{wochentage[index]}</div>
+      </div>
+    );
+  })}
+</div>
 
-            <div className="kalorien-chart">
-              {kalorienWoche.length === 7 ? (
-                (() => {
-                  const max = Math.max(...kalorienWoche, 1); // kein 0-div
-                  return kalorienWoche.map((kcal, index) => (
-                    <div key={index} className="kalorien-column">
-                      <div
-                        className="kalorien-bar"
-                        style={{
-                          height: `${(kcal / max) * 100}%`,
-                          backgroundColor: kcal > 0 ? '#4caf50' : '#444',
-                        }}
-                        title={`${kcal} kcal`}
-                      />
-                      <div className="kalorien-label">{wochentage[index]}</div>
-                    </div>
-                  ));
-                })()
-              ) : (
-                Array.from({ length: 7 }).map((_, i) => (
-                  <div key={i} className="kalorien-column">
-                    <div className="kalorien-bar" style={{ height: '5%', backgroundColor: '#444' }} />
-                    <div className="kalorien-label">{wochentage[i]}</div>
-                  </div>
-                ))
-              )}
-            </div>
           </div>
 
         </div>

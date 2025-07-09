@@ -1,27 +1,28 @@
 // src/utils/auth.ts
-
-import { USERS } from '../data/users';
+import { USERS } from './users';
 
 export const login = (email: string, password: string): boolean => {
   const user = USERS.find(
-    (u) => u.email.toLowerCase() === email.trim().toLowerCase() && u.password === password
+    (u) => u.email.toLowerCase() === email.toLowerCase() && u.password === password
   );
   if (user) {
-    localStorage.setItem('loggedInUser', JSON.stringify(user));
-    window.dispatchEvent(new Event('authChanged')); // neu
+    localStorage.setItem('loggedIn', 'true');
+    localStorage.setItem('currentUser', JSON.stringify(user));
     return true;
   }
   return false;
 };
 
+export const isLoggedIn = (): boolean => {
+  return localStorage.getItem('loggedIn') === 'true';
+};
+
 export const logout = () => {
-  localStorage.removeItem('loggedInUser');
-  window.dispatchEvent(new Event('authChanged')); // neu
+  localStorage.removeItem('loggedIn');
+  localStorage.removeItem('currentUser');
 };
 
 export const getCurrentUser = () => {
-  const user = localStorage.getItem('loggedInUser');
-  return user ? JSON.parse(user) : null;
+  const json = localStorage.getItem('currentUser');
+  return json ? JSON.parse(json) : null;
 };
-
-export const isLoggedIn = (): boolean => !!localStorage.getItem('loggedInUser');

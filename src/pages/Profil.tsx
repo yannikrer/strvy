@@ -41,7 +41,7 @@ const Profil: React.FC = () => {
         <Navbar />
         <div className="content-offset">
           <IonText className="profil-title">
-            <h2>Anmeldedaten</h2>
+            <h2>Profil & Zugangsdaten</h2>
           </IonText>
 
           <IonItem className="input-item">

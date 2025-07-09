@@ -1,34 +1,41 @@
 .profil-page {
-  --background: #0a0a0a;
+  --background: #0e0e0e;
   background-color: var(--background);
   color: white;
+  font-family: 'Inter', sans-serif;
 }
 
 .content-offset {
-  padding-top: 70px;
-  padding-inline: 16px;
+  padding-top: 80px;
+  padding-inline: 20px;
 }
 
 .profil-title {
   text-align: center;
-  margin-bottom: 24px;
-  font-weight: bold;
-  font-size: 20px;
+  margin-bottom: 30px;
+  font-weight: 600;
+  font-size: 22px;
+  color: #ffffff;
 }
 
 .input-item {
   --background: transparent;
   border: none;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .input-with-icon {
   display: flex;
   align-items: center;
   background-color: #1a1a1a;
-  border-radius: 12px;
-  padding: 10px 12px;
+  border-radius: 14px;
+  padding: 12px 14px;
   border: 1px solid #333;
+  transition: border-color 0.2s ease;
+}
+
+.input-with-icon:focus-within {
+  border-color: #4cd137;
 }
 
 .profil-input {
@@ -36,6 +43,7 @@
   flex: 1;
   background: transparent;
   border: none;
+  font-size: 16px;
 }
 
 .profil-input:disabled {
@@ -43,10 +51,11 @@
 }
 
 .edit-icon {
-  font-size: 20px;
-  color: #aaa;
-  margin-left: 8px;
+  font-size: 22px;
+  color: #888;
+  margin-left: 10px;
   cursor: pointer;
+  transition: color 0.2s ease;
 }
 
 .edit-icon:hover {
@@ -55,16 +64,30 @@
 
 .button-row {
   display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: 30px;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 36px;
 }
 
 .logout-btn,
 .save-btn {
-  flex: 1;
-  border-radius: 12px;
-  --background: #1a1a1a;
-  color: white;
+  border-radius: 14px;
+  --background: #1f1f1f;
+  font-weight: 500;
   text-transform: none;
+  --color: white;
+}
+
+.logout-btn {
+  --background: #2c2c2c;
+}
+
+.logout-btn:hover {
+  --background: #ff4d4d;
+  color: white;
+}
+
+.save-btn {
+  --background: #4cd137;
+  --color: black;
 }

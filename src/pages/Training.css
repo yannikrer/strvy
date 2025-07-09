@@ -142,7 +142,7 @@ ion-fab-button:hover {
 }
 
 ion-fab {
-  bottom: 25px !important;
+  bottom: 0px !important;
 }
 
 /* == RESPONSIVE TWEAKS == */
