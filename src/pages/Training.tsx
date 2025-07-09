@@ -35,7 +35,6 @@ const Training: React.FC = () => {
   return (
     <IonPage>
       <IonContent fullscreen className="training-page">
-        <Navbar />
         <div className="content-offset">
           {trainings.length === 0 ? (
             <IonText className="no-data">Keine Trainings gefunden.</IonText>
@@ -43,18 +42,27 @@ const Training: React.FC = () => {
             trainings.map((t) => (
               <div className="training-card" key={t.id}>
                 <div className="training-header">
-                  <IonText className="training-title">{t.name}</IonText>
-                  <span className="training-color" style={{ backgroundColor: t.farbe }}></span>
+                  <div className="training-title-group">
+                    <span
+                      className="training-color"
+                      style={{ backgroundColor: t.farbe }}
+                      title="Farbe des Trainings"
+                    />
+                    <IonText className="training-title">{t.name}</IonText>
+                  </div>
+
                   <div className="training-actions">
                     <IonIcon
                       icon={pencil}
                       className="icon-btn"
                       onClick={() => history.push(`/training-bearbeiten/${t.id}`)}
+                      title="Bearbeiten"
                     />
                     <IonIcon
                       icon={trash}
                       className="icon-btn"
                       onClick={() => handleDelete(t.id)}
+                      title="Löschen"
                     />
                   </div>
                 </div>
@@ -76,6 +84,9 @@ const Training: React.FC = () => {
           </IonFabButton>
         </IonFab>
       </IonContent>
+
+      {/* Fixierte untere Navigation */}
+      <Navbar />
     </IonPage>
   );
 };

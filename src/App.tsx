@@ -14,6 +14,8 @@ import UebungBearbeiten from './pages/UebungBearbeiten';
 import TrainingErstellen from './pages/TrainingErstellen';
 import TrainingBearbeiten from './pages/TrainingBearbeiten';
 import WochenplanBearbeiten from './pages/WochenplanBearbeiten';
+import Kalorien from './pages/Kalorien'; // ✅ importieren
+
 
 
 /* Ionic CSS */
@@ -86,6 +88,10 @@ const App: React.FC = () => {
           <Route exact path="/training-ausfuehren/:id">
             {authenticated ? <TrainingAusfuehren /> : <Redirect to="/login" />}
           </Route>
+          <Route exact path="/kalorien">
+            {authenticated ? <Kalorien /> : <Redirect to="/login" />}
+          </Route>
+
 
           {/* Standard-Redirect */}
           <Route exact path="/">

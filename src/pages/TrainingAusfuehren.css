@@ -1,5 +1,5 @@
 .training-ausfuehren-page {
-  background-color: #0a0a0a;
+  background-color: #0e0e0e;
   color: #ffffff;
   min-height: 100vh;
 }
@@ -12,8 +12,12 @@
   font-size: 22px;
   font-weight: bold;
   text-align: center;
-  margin: 20px 0;
   color: #ffffff;
+  padding: 6px;
+}
+
+.content-offset > .training-title {
+  margin-bottom: 40px !important;
 }
 
 .uebung-card {
@@ -21,6 +25,7 @@
   border-radius: 12px;
   padding: 14px 18px;
   margin-bottom: 14px;
+  margin-top: 15px;
 
   display: flex;
   align-items: center;
@@ -28,9 +33,7 @@
 
 .uebung-info {
   color: #ccc;
-  /* Text nimmt so viel Platz wie möglich */
   flex-grow: 1;
-  /* Damit Text nicht zu lang wird */
   overflow-wrap: break-word;
 }
 
@@ -40,17 +43,16 @@
   font-weight: bold;
   font-size: 16px;
   display: block;
-  margin-left: -30%;
-  margin-top: 5%;
+  margin-left: 0%;
+  margin-top: 2%;
 }
 
 .uebung-info p {
   margin: 2px 0;
   font-size: 14px;
-  margin-left: -30%;
+  margin-left: 0%;
 }
 
-/* Haken soll immer ganz rechts stehen */
 .uebung-checkbox {
   width: 28px;
   height: 28px;
@@ -63,7 +65,6 @@
   justify-content: center;
 
   cursor: pointer;
-
   margin-left: auto;
 }
 
@@ -99,4 +100,24 @@ ion-content.training-ausfuehren-page {
 html,
 body {
   background-color: #0a0a0a;
+}
+
+/* === Bildanzeige === */
+.uebung-img-wrapper {
+  width: 90%;
+  height: auto;
+  margin-top: 12px;
+  border-radius: 12px;
+}
+
+.uebung-img-wrapper.expanded {
+  display: block;
+}
+
+.uebung-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
 }

@@ -10,6 +10,7 @@ import { getTrainings, Training } from '../data/trainings';
 import { getChecks, saveChecks } from '../data/checks';
 import './TrainingAusfuehren.css';
 import { useEffect, useState } from 'react';
+import { getUebungById } from '../data/uebungen';
 
 const TrainingAusfuehren: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -17,8 +18,8 @@ const TrainingAusfuehren: React.FC = () => {
 
   const [training, setTraining] = useState<Training | undefined>(undefined);
   const [checked, setChecked] = useState<boolean[]>([]);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
-  // Trainingsdaten + gespeicherte Checkbox-Status laden
   useEffect(() => {
     const allTrainings = getTrainings();
     const found = allTrainings.find(t => t.id === id);
@@ -45,6 +46,10 @@ const TrainingAusfuehren: React.FC = () => {
     history.goBack();
   };
 
+  const toggleImage = (index: number) => {
+    setExpandedIndex(prev => (prev === index ? null : index));
+  };
+
   if (!training) {
     return (
       <IonPage>
@@ -65,20 +70,47 @@ const TrainingAusfuehren: React.FC = () => {
         <div className="content-offset">
           <IonText className="training-title">{training.name}</IonText>
 
-          {training.uebungen.map((uebung, index) => (
-            <div className="uebung-card" key={index}>
-              <div className="uebung-info">
-                <strong>{uebung.name}</strong>
-                <p>Gewicht: {uebung.gewicht} kilogramm &nbsp;&nbsp;</p>
-                <p>Erstelldatum: {new Date().toLocaleDateString()}</p>
-              </div>
+          {training.uebungen.map((uebung, index) => {
+            const originalUebung = getUebungById(uebung.id);
+            const isExpanded = expandedIndex === index;
 
-              <div
-                className={`uebung-checkbox ${checked[index] ? 'checked' : ''}`}
-                onClick={() => toggleChecked(index)}
-              />
-            </div>
-          ))}
+            return (
+              <div className="uebung-card" key={index}>
+                <div className="uebung-info">
+                  <strong>{uebung.name}</strong>
+                  <p>Gewicht: {uebung.gewicht} kilogramm</p>
+                  <p>Erstelldatum: {new Date().toLocaleDateString()}</p>
+
+                  {originalUebung?.foto && (
+                    <>
+                      {isExpanded && (
+                        <div className="uebung-img-wrapper expanded">
+                          <img
+                            src={originalUebung.foto}
+                            alt={uebung.name}
+                            className="uebung-img"
+                          />
+                        </div>
+                      )}
+                      <IonButton
+                        size="small"
+                        fill="outline"
+                        color="light"
+                        onClick={() => toggleImage(index)}
+                      >
+                        {isExpanded ? 'Bild verbergen' : 'Bild anzeigen'}
+                      </IonButton>
+                    </>
+                  )}
+                </div>
+
+                <div
+                  className={`uebung-checkbox ${checked[index] ? 'checked' : ''}`}
+                  onClick={() => toggleChecked(index)}
+                />
+              </div>
+            );
+          })}
 
           <div className="button-row">
             <IonButton onClick={() => history.goBack()} color="medium">

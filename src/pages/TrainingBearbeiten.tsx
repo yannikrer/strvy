@@ -6,6 +6,8 @@ import {
   IonButton,
   IonSelect,
   IonSelectOption,
+  IonCard,
+  IonCardContent,
 } from '@ionic/react';
 import { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
@@ -51,7 +53,7 @@ const TrainingBearbeiten: React.FC = () => {
 
   const handleRemoveUebung = (index: number) => {
     const neueListe = [...ausgewaehlteUebungen];
-    neueListe.splice(index, 1); // Nur die eine Instanz entfernen
+    neueListe.splice(index, 1);
     setAusgewaehlteUebungen(neueListe);
   };
 
@@ -82,57 +84,67 @@ const TrainingBearbeiten: React.FC = () => {
             <h2>Training bearbeiten</h2>
           </IonText>
 
-          <IonInput
-            placeholder="Name"
-            value={name}
-            onIonChange={(e) => setName(e.detail.value!)}
-            className="input"
-          />
+          <div className="input-group">
+            <IonInput
+              placeholder="Name"
+              value={name}
+              onIonChange={(e) => setName(e.detail.value!)}
+              className="input"
+            />
+          </div>
 
-          <label className="farbe-label">Farbe:</label>
-          <input
-            type="color"
-            value={farbe}
-            onChange={(e) => setFarbe(e.target.value)}
-            className="color-picker"
-          />
+          <div className="input-group">
+            <label className="farbe-label">Farbe:</label>
+            <input
+              type="color"
+              value={farbe}
+              onChange={(e) => setFarbe(e.target.value)}
+              className="color-picker"
+            />
+          </div>
 
-          <IonSelect
-            placeholder="Übung auswählen"
-            value={auswahlId}
-            onIonChange={(e) => setAuswahlId(e.detail.value)}
-            interface="popover"
-          >
-            {alleUebungen.map((u) => (
-              <IonSelectOption key={u.id} value={u.id}>
-                {u.name}
-              </IonSelectOption>
-            ))}
-          </IonSelect>
-
-          <IonButton expand="block" onClick={handleAddUebung}>
-            Hinzufügen
-          </IonButton>
+          <div className="input-group">
+            <IonSelect
+              placeholder="Übung auswählen"
+              value={auswahlId}
+              onIonChange={(e) => setAuswahlId(e.detail.value)}
+              interface="popover"
+            >
+              {alleUebungen.map((u) => (
+                <IonSelectOption key={u.id} value={u.id}>
+                  {u.name}
+                </IonSelectOption>
+              ))}
+            </IonSelect>
+            <IonButton expand="block" onClick={handleAddUebung}>
+              Hinzufügen
+            </IonButton>
+          </div>
 
           <div className="training-liste">
             {ausgewaehlteUebungen.map((u, index) => (
-              <div
+              <IonCard
                 key={index}
-                className="training-item"
+                className="uebung-card"
+                button
                 onClick={() => handleRemoveUebung(index)}
               >
-                <strong>{u.name}</strong>
-                <p>Gewicht: {u.gewicht}</p>
-                <p style={{ color: '#ff4d4d', fontSize: '13px' }}>
-                  Klicken zum Entfernen
-                </p>
-              </div>
+                <IonCardContent>
+                  <strong>{u.name}</strong>
+                  <p>Gewicht: {u.gewicht}</p>
+                  <p className="remove-hint">Klicken zum Entfernen</p>
+                </IonCardContent>
+              </IonCard>
             ))}
           </div>
 
           <div className="button-row">
-            <IonButton onClick={() => history.push('/training')}>Cancel</IonButton>
-            <IonButton onClick={handleSave}>Speichern</IonButton>
+            <IonButton onClick={() => history.push('/training')} color="medium">
+              Cancel
+            </IonButton>
+            <IonButton onClick={handleSave} color="primary">
+              Speichern
+            </IonButton>
           </div>
         </div>
       </IonContent>

@@ -46,7 +46,6 @@ const Uebungen: React.FC = () => {
   return (
     <IonPage>
       <IonContent fullscreen className="uebungen-page">
-        <Navbar />
         <div className="content-offset">
           {uebungen.length === 0 ? (
             <IonText className="no-data">Keine Übungen gefunden.</IonText>
@@ -65,7 +64,12 @@ const Uebungen: React.FC = () => {
                     <p>Gewicht: {u.gewicht}</p>
                     <p>Erstelldatum: {u.createdAt}</p>
                   </div>
-                  {u.foto && <img src={u.foto} alt={u.name} className="uebung-img" />}
+
+                  {u.foto && (
+                    <div className="uebung-img-wrapper">
+                      <img src={u.foto} alt={u.name} className="uebung-img" />
+                    </div>
+                  )}
                 </div>
               </div>
             ))
@@ -78,6 +82,8 @@ const Uebungen: React.FC = () => {
           </IonFabButton>
         </IonFab>
       </IonContent>
+
+      <Navbar />
     </IonPage>
   );
 };

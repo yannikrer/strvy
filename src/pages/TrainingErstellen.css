@@ -1,122 +1,143 @@
 .training-erstellen-page {
-  --background: #121212;
+  --background: #0e0e0e;
   background-color: var(--background);
   color: white;
-  padding: 0;
+  font-family: 'Inter', sans-serif;
 }
 
 .content-offset {
-  padding: 20px;
-  margin-top: 60px;
+  padding: 24px;
+  padding-top: 72px;
 }
 
 .title {
   text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 24px;
   color: white;
+}
+
+.input-group {
+  margin-bottom: 20px;
 }
 
 .input,
-.color-picker {
+.color-picker,
+ion-select {
   width: 100%;
-  background-color: #1e1e1e;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 12px;
-  margin-bottom: 16px;
+  background-color: #1a1a1a;
+  border: 1px solid #2c2c2c;
+  border-radius: 12px;
+  padding: 14px 16px;
   font-size: 16px;
+  color: white;
+  transition: border 0.2s;
+}
+
+.input:focus-within,
+.color-picker:focus,
+ion-select:focus {
+  border-color: #4cd137;
+}
+
+ion-select {
+  --placeholder-color: #888;
+  --color: white;
+  margin-bottom: 10px;
+}
+
+.farbe-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #aaa;
+  font-weight: 500;
 }
 
 .color-picker {
-  height: 40px;
-}
-
-.section-title {
-  font-size: 16px;
-  font-weight: 600;
-  margin: 20px 0 10px;
-  color: white;
-}
-
-.uebung-liste {
-  background-color: #1e1e1e;
-  border-radius: 12px;
-  padding: 10px 12px;
-  max-height: 240px;
-  overflow-y: auto;
-  color: white;
-}
-
-.uebung-eintrag {
-  padding: 10px 0;
-  border-bottom: 1px solid #2c2c2c;
+  height: 46px;
+  padding: 0;
+  border-radius: 10px;
   cursor: pointer;
-  color: white;
 }
 
-.uebung-eintrag:last-child {
-  border-bottom: none;
+.checkbox-item {
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  padding: 12px;
 }
 
-.uebung-eintrag strong {
+.checkbox-label {
+  margin-left: 12px;
+  color: #ccc;
   font-size: 15px;
+}
+
+.training-liste {
+  margin-top: 20px;
+}
+
+.uebung-card {
+  background-color: #181818;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 12px;
+  transition: transform 0.2s ease;
+}
+
+.uebung-card:hover {
+  transform: translateY(-2px);
+}
+
+.uebung-card ion-card-content {
+  padding: 14px 16px;
   color: white;
 }
 
-.gewicht {
+.uebung-card strong {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.uebung-card p {
+  margin: 2px 0;
+  color: #bbb;
+}
+
+.remove-hint {
+  color: #f55;
   font-size: 13px;
-  color: #aaa;
-  margin-top: 2px;
-}
-
-.remove-text {
-  color: #ff4d4d;
-  font-size: 12px;
-  margin-top: 4px;
-}
-
-.uebung-eintrag.selected {
-  background-color: #2a2a2a;
-  border-radius: 8px;
-  padding: 10px;
-  transition: background-color 0.2s;
+  margin-top: 6px;
 }
 
 .button-row {
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
+  gap: 16px;
+  margin-top: 36px;
 }
 
 .button-row ion-button {
   flex: 1;
-  margin: 0 8px;
-  --background: #2c2c2c;
+  --background: #222;
   --color: white;
-  border-radius: 10px;
+  --border-radius: 12px;
   font-weight: 500;
+  text-transform: none;
 }
 
-/* Dropdown-Optionen sollen NICHT weiß sein */
-ion-select,
+.button-row ion-button[color="primary"] {
+  --background: #4cd137;
+  --color: #000;
+}
+
+/* Optional: Select & Options */
 ion-select-option {
-  color: #aaa !important;
-}
-
-.training-item {
-  padding: 8px;
-  margin: 10px 0;
-  background-color: #1e1e1e;
-  border-radius: 10px;
-  cursor: pointer;
   color: white;
-  transition: background 0.2s;
+  background-color: #1a1a1a;
 }
 
-.training-item:hover {
-  background-color: #2e2e2e;
+ion-select::part(icon) {
+  color: #999;
 }
-

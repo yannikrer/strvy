@@ -1,0 +1,60 @@
+.kalorien-page {
+  --background: #121212;
+  background-color: var(--background);
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+
+.kalorien-card {
+  background: #1e1e1e;
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 16px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.kalorien-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.kalorien-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tag-label {
+  width: 30px;
+}
+
+.balken {
+  background-color: #ffffff;
+  color: black;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  min-width: 100px;
+  max-width: 80%;
+}
+
+.modal-content {
+  padding: 20px;
+  background: #1a1a1a;
+  height: 100%;
+  color: white;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  gap: 10px;
+}

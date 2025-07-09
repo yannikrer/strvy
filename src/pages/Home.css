@@ -1,5 +1,5 @@
 .home-page {
-  --background: #121212;
+  --background: #0e0e0e;
   color: white;
   padding: 0;
 }
@@ -51,6 +51,39 @@
   display: flex;
   justify-content: space-between;
   margin-top: 8px;
+  font-size: 0.8rem;
+  color: #bbb;
+}
+
+.tag-bar.empty {
+  background-color: #333;
+  height: 10%;
+  border-radius: 6px;
+}
+
+.kalorien-chart {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 120px;
+  margin-top: 12px;
+}
+
+.kalorien-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 12%;
+}
+
+.kalorien-bar {
+  width: 100%;
+  border-radius: 6px;
+  transition: height 0.3s ease;
+}
+
+.kalorien-label {
+  margin-top: 6px;
   font-size: 0.8rem;
   color: #bbb;
 }

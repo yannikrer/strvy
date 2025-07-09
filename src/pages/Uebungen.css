@@ -1,71 +1,153 @@
+/* == GLOBAL STYLING == */
 .uebungen-page {
-  --background: #121212;
+  --background: #0e0e0e;
+  background-color: var(--background);
   color: #fff;
-  padding: 16px;
+  font-family: 'Inter', sans-serif;
+  padding: 0; /* kein zusätzliches Padding */
 }
 
+/* == OFFSET FOR FIXED NAVBAR & FAB == */
 .content-offset {
-  margin-top: 100px;
-  padding: 0 16px;
+  padding: 0px 16px 100px 16px; /* oben, rechts, unten, links */
 }
 
+ion-fab-button {
+  --background: #222 !important; /* dunkler Hintergrund */
+  --color: #fff !important;      /* optional: weiße Farbe fürs Plus */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* optionaler Schatten */
+}
+
+/* == EMPTY STATE == */
 .no-data {
   text-align: center;
   color: #aaa;
-  margin-top: 2rem;
+  margin-top: 4rem;
+  font-size: 1.1rem;
 }
 
+.uebung-card:first-child {
+  margin-top: 0 !important;
+}
+
+/* == CARD CONTAINER == */
 .uebung-card {
-  background: #1e1e1e;
-  padding: 16px;
-  border-radius: 14px;
-  margin-bottom: 16px;
-  color: white;
-  display: flex;
-  flex-direction: column;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: fadeIn 0.3s ease;
+  margin-top: 10%;
 }
 
+.uebung-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+}
+
+/* == TITLE ROW == */
 .uebung-title-row {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  margin-bottom: 8px;
 }
 
 .uebung-title-row strong {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: white;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+/* == ACTION ICONS == */
 .uebung-actions {
   display: flex;
   gap: 12px;
+  color: #ccc;
   cursor: pointer;
-  color: white;
 }
 
 .uebung-actions ion-icon {
   font-size: 1.3rem;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.uebung-actions ion-icon:hover {
+  color: #4cd137;
+  transform: scale(1.15);
+}
+
+/* == INFO TEXT == */
+.uebung-info-wrapper {
+  margin-top: 6px;
 }
 
 .uebung-info-wrapper p {
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   color: #ccc;
   margin: 4px 0;
+  line-height: 1.4;
 }
 
-
-.uebung-info-wrapper {
-  display: block; /* Nicht mehr flex */
-}
-
+/* == ÜBUNGSTEXT == */
 .uebung-text {
-  margin-bottom: 12px; /* Abstand nach unten vor Bild */
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  color: #ddd;
+}
+
+/* == IMAGE == */
+.uebung-img-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-top: 10px;
 }
 
 .uebung-img {
   width: 100%;
-  max-height: auto;
-  border-radius: 10px;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+/* == ANIMATION == */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* == FAB-POSITION ANPASSUNG (höher über Bottom-Navbar) == */
+ion-fab {
+  bottom: 90px !important;
+}
+
+/* == RESPONSIVE == */
+@media (max-width: 480px) {
+  .uebung-title-row strong {
+    font-size: 1rem;
+  }
+
+  .uebung-card {
+    padding: 14px 16px;
+  }
+
+  .uebung-img {
+    max-height: 220px;
+  }
 }

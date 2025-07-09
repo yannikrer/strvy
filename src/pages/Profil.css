@@ -1,5 +1,6 @@
 .profil-page {
-  --background: #000;
+  --background: #0a0a0a;
+  background-color: var(--background);
   color: white;
 }
 
@@ -12,11 +13,10 @@
   text-align: center;
   margin-bottom: 24px;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .input-item {
-  background-color: transparent;
   --background: transparent;
   border: none;
   margin-bottom: 20px;
@@ -28,25 +28,36 @@
   background-color: #1a1a1a;
   border-radius: 12px;
   padding: 10px 12px;
+  border: 1px solid #333;
 }
 
 .profil-input {
   color: white;
   flex: 1;
   background: transparent;
+  border: none;
+}
+
+.profil-input:disabled {
+  opacity: 0.5;
 }
 
 .edit-icon {
   font-size: 20px;
-  color: #888;
+  color: #aaa;
   margin-left: 8px;
+  cursor: pointer;
+}
+
+.edit-icon:hover {
+  color: #4cd137;
 }
 
 .button-row {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  margin-top: 24px;
+  margin-top: 30px;
 }
 
 .logout-btn,
@@ -55,4 +66,5 @@
   border-radius: 12px;
   --background: #1a1a1a;
   color: white;
+  text-transform: none;
 }

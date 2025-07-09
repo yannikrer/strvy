@@ -8,6 +8,7 @@ import {
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { login, isLoggedIn } from '../utils/auth';
+import './Login.css';
 
 const Login: React.FC = () => {
   const history = useHistory();
@@ -16,17 +17,21 @@ const Login: React.FC = () => {
   const [error, setError] = useState(false);
 
   const handleLogin = () => {
-    const success = login(email, password);
+    if (!email || !password) {
+      setError(true);
+      return;
+    }
+
+    const success = login(email.trim(), password.trim());
     if (success) {
       setError(false);
-      history.replace('/home'); // <<< direkt weiterleiten
+      history.replace('/home');
     } else {
       setError(true);
     }
   };
 
   useEffect(() => {
-    // Wenn man schon eingeloggt ist und auf /login geht:
     if (isLoggedIn()) {
       history.replace('/home');
     }
@@ -34,9 +39,9 @@ const Login: React.FC = () => {
 
   return (
     <IonPage>
-      <IonContent fullscreen className="ion-padding login-page">
+      <IonContent fullscreen className="login-page">
         <div className="login-container">
-          <h1 className="logo">STRYV</h1>
+          <img src="./logo.png" alt="STRYV Logo" className="login-logo" />
 
           <IonInput
             className="custom-input"
@@ -58,7 +63,7 @@ const Login: React.FC = () => {
           </IonButton>
 
           {error && (
-            <IonText color="danger" className="ion-text-center" style={{ marginTop: '12px' }}>
+            <IonText color="danger" className="error-text">
               <p>Falsche E-Mail oder Passwort</p>
             </IonText>
           )}

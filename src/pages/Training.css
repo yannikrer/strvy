@@ -1,72 +1,163 @@
+/* == GLOBAL PAGE STYLING == */
 .training-page {
-  --background: #121212;
+  --background: #0e0e0e;
   background-color: var(--background);
-  color: white;
+  color: #f1f1f1;
+  font-family: 'Inter', sans-serif;
   padding: 1rem;
 }
 
-.content-offset {
-  padding-top: 60px;
+/* == OFFSET FOR FIXED NAVBAR & FAB == */
+
+
+
+
+/* == EMPTY STATE == */
+.no-data {
+  text-align: center;
+  margin-top: 4rem;
+  font-size: 1.1rem;
+  color: #777;
 }
 
+/* == CARD BASE == */
 .training-card {
-  background-color: #1e1e1e;
-  border-radius: 14px;
-  padding: 16px;
-  margin-bottom: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  color: white;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 0.3s ease;
 }
 
+.training-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.6);
+}
+
+/* == ANIMATION == */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* == HEADER == */
 .training-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 6px;
+  align-items: flex-start;
+  margin-bottom: 0.1px;
 }
 
-.training-title {
-  font-weight: bold;
-  font-size: 1.1rem;
+/* == TITLE + COLOR DOT GROUP == */
+.training-title-group {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  color: white;
+  gap: 10px;
+  flex-grow: 1;
+  overflow: hidden;
 }
 
+/* == TITLE == */
+.training-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* == COLOR DOT == */
 .training-color {
-  width: 12px;
-  height: 12px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  display: inline-block;
-  margin-left: -40%;  /* statt margin-right */
-  flex-shrink: 0;
+  border: 2px solid #2c2c2c;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.training-actions .icon-btn {
-  font-size: 1.2rem;
+.training-color:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+/* == ICON BUTTONS (RIGHT SIDE) == */
+.training-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.icon-btn {
+  font-size: 1.3rem;
+  color: #ccc;
   padding: 6px;
   cursor: pointer;
-  color: white;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
+.icon-btn:hover {
+  color: #4cd137;
+  transform: scale(1.15);
+}
+
+/* == TEXT INFO BELOW TITLE == */
 .training-info {
-  font-size: 0.95rem;
-  color: #dcdcdc;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  font-size: 0.92rem;
+  color: #aaaaaa;
+  margin-top: 0;
+  margin-bottom: 1px;
 }
-
 
 .training-date {
   font-size: 0.8rem;
-  color: #888;
-  margin-top: 0px;
+  color: #666666;
 }
 
-.no-data {
-  text-align: center;
-  margin-top: 2rem;
-  color: #777;
+/* == FLOATING ACTION BUTTON (FAB) == */
+ion-fab-button {
+  --background: rgba(255, 255, 255, 0.07);
+  --box-shadow: 0 0 12px rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  font-size: 28px;
+  color: white;
+  transition: transform 0.2s ease;
+}
+
+ion-fab-button:hover {
+  transform: scale(1.1);
+}
+
+ion-fab {
+  bottom: 25px !important;
+}
+
+/* == RESPONSIVE TWEAKS == */
+@media (max-width: 480px) {
+  .training-title {
+    font-size: 1.1rem;
+  }
+
+  .training-card {
+    padding: 16px;
+  }
+
+  ion-fab-button {
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+  }
 }

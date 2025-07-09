@@ -8,7 +8,7 @@ import {
   IonItem,
   IonLabel,
 } from '@ionic/react';
-import { pencil } from 'ionicons/icons';
+import { pencil, checkmark } from 'ionicons/icons';
 import { useState } from 'react';
 import { logout, getCurrentUser } from '../utils/auth';
 import { useHistory } from 'react-router-dom';
@@ -21,6 +21,8 @@ const Profil: React.FC = () => {
 
   const [email, setEmail] = useState(user?.email || '');
   const [password, setPassword] = useState(user?.password || '');
+  const [editingEmail, setEditingEmail] = useState(false);
+  const [editingPassword, setEditingPassword] = useState(false);
 
   const handleLogout = () => {
     logout();
@@ -29,13 +31,14 @@ const Profil: React.FC = () => {
 
   const handleSave = () => {
     alert('Daten gespeichert (Demo)');
+    setEditingEmail(false);
+    setEditingPassword(false);
   };
 
   return (
     <IonPage>
       <IonContent fullscreen className="profil-page">
         <Navbar />
-
         <div className="content-offset">
           <IonText className="profil-title">
             <h2>Anmeldedaten</h2>
@@ -47,22 +50,32 @@ const Profil: React.FC = () => {
               <IonInput
                 className="profil-input"
                 value={email}
+                disabled={!editingEmail}
                 onIonChange={(e) => setEmail(e.detail.value!)}
               />
-              <IonIcon icon={pencil} className="edit-icon" />
+              <IonIcon
+                icon={editingEmail ? checkmark : pencil}
+                className="edit-icon"
+                onClick={() => setEditingEmail(!editingEmail)}
+              />
             </div>
           </IonItem>
 
           <IonItem className="input-item">
-            <IonLabel position="stacked">Password</IonLabel>
+            <IonLabel position="stacked">Passwort</IonLabel>
             <div className="input-with-icon">
               <IonInput
                 className="profil-input"
                 type="password"
                 value={password}
+                disabled={!editingPassword}
                 onIonChange={(e) => setPassword(e.detail.value!)}
               />
-              <IonIcon icon={pencil} className="edit-icon" />
+              <IonIcon
+                icon={editingPassword ? checkmark : pencil}
+                className="edit-icon"
+                onClick={() => setEditingPassword(!editingPassword)}
+              />
             </div>
           </IonItem>
 
