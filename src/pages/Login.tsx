@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import './Login.css';
 import logo from './logo.png';
+import { login, isLoggedIn } from '../utils/auth'; // <== NUTZEN!
 
 const Login: React.FC = () => {
   const history = useHistory();
@@ -17,15 +18,15 @@ const Login: React.FC = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
-    if (isLoggedIn) {
+    if (isLoggedIn()) {
       history.replace('/home');
     }
   }, [history]);
 
   const handleLogin = () => {
-    if (email.trim() === 'admin' && password.trim() === 'admin') {
-      localStorage.setItem('loggedIn', 'true');
+    const success = login(email.trim(), password.trim());
+    if (success) {
+      setError('');
       history.replace('/home');
     } else {
       setError('Benutzername oder Passwort ist falsch.');
